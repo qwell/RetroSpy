@@ -23,6 +23,9 @@ namespace RetroSpy
             _localBuffer = new List<byte>();
             _datPort = new SerialPort(portName, BAUD_RATE);
             _datPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+
+            try { _datPort.DtrEnable = true; } catch { }
+            try { _datPort.RtsEnable = true; } catch { }
         }
 
         public void Start()
